@@ -13,7 +13,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // port setup for Heroku deployment
-var PORT = process.env.MONGODB_URI || 3000;
+var PORT = process.env.MONGU_URI || 3000;
 
 // Database configuration with mongoose
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
