@@ -44,14 +44,17 @@ app.use(express.static("public"));
 
 // Routes
 
+app.get("/", function (req, res) {
+    console.log("Hello");
+})
 // GET route for scraping Cosmopolitan website
-app.get("scrape", function (req, res) {
+app.get("/scrape", function (req, res) {
     axios.get("https://www.cosmopolitan.com/health-fitness/").then(function (response) {
         // then we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
 
         // Now, we grab every h2 within an article tag and do the following:
-        $("div.full-item").each(function (i, element) {
+        $("div.full-item-content").each(function (i, element) {
             // save an empty result object
             var result = {};
 
