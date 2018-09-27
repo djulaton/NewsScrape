@@ -13,7 +13,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // port setup for Heroku deployment
-var PORT = process.env.MONGU_URI || 3000;
+var PORT = process.env.MONGODB_URI || 3000;
 
 // Database configuration with mongoose
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
@@ -22,6 +22,9 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+// test mlab connection
+// mongoose.connect("mongodb://heroku_7zjjd6hl:Mateo123!@ds113873.mlab.com:13873/heroku_7zjjd6hl");
 
 // scraping tools
 // Axios - promised http library, similar to jquery's ajax method
