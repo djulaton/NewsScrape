@@ -13,10 +13,10 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // port setup for Heroku deployment
-var PORT = process.env.MONGU_URI || 3000;
+var PORT = process.env.MONGODB_URI || 3000;
 
 // Database configuration with mongoose
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -88,7 +88,7 @@ app.get("/scrape", function (req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
     // grab every document in the Articles collection
-    db.Article.find({})
+    db.Article.find({}).sort({_id: -1})
         .then(function (dbArticle) {
             // if we were able to successfully find Articles, send them back to the client
             res.json(dbArticle);
